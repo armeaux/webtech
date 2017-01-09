@@ -1,0 +1,42 @@
+
+<table class="tasklist">
+		<thead class="table-head">
+			<tr>
+				<td class=""></td>
+				<td class="">Category</td>
+				<td class="">Name</td>
+				<td class="">Priority</td>
+				<td class="">Due Date</td>
+			</tr>
+		</thead>
+		<tbody>
+			{% for task in tasks %}
+				{% if request.user == task.author %}
+					<tr>
+						<td data-tooltip="Mark Done" data-placement="left" class="colorcode"><i class="material-icons">check_box_outline_blank</i></td>
+						<td class="category">{{ task.category }}</td>
+						<td class="name">
+							{{ task.title }}
+							
+						</td>
+						<td class="priority">{{ task.priority }}</td>
+						<td class="due">{{ task.due_date }}</td>
+					</tr>
+				{% endif %}
+			{% endfor %}
+			<tr class="add-task">
+				<td colspan="5">
+					<i class="material-icons">add_circle_outline</i>
+					<span>Add a new task!</span>
+					<div class="new-edit">
+						<input id="task-name" type="text" class="validate" value="Enter a name!">
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div class="action-buttons">
+		<a class="add-new-task-button btn-floating"><i class="material-icons">add</i></a>
+		<a class="cancel-task btn-floating red darken-2"><i class="material-icons">clear</i></a>
+	</div>
